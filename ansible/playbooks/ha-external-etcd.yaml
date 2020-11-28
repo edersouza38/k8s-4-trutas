@@ -8,8 +8,14 @@
   roles:
     - haproxy
 
-- name: Kubernetes - Instalação HA - Stacked Etcd
+- name: etc
+  hosts: etcds
+  roles:
+    - etcd
+
+- name: Kubernetes - Instalação HA - Etcd Stacked
   hosts: control-plane,nodes
   roles:
+    - pre-reqs
     - docker
     - kubernetes
